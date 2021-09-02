@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useRef } from "react";
 import Monaco from "@monaco-editor/react";
 import Box from "../Box";

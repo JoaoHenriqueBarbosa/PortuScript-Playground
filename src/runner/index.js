@@ -18,7 +18,7 @@ export const createContainer = () => {
   return container;
 };
 
-export default (consoleInstance) => (code) => {
+const runner = (consoleInstance) => (code) => {
   if (code.type === "command") {
     consoleInstance.current?.pushLog({
       method: code.type,
@@ -60,3 +60,5 @@ export default (consoleInstance) => (code) => {
     container.contentWindow.console.error("psLog", error?.message || error);
   }
 };
+
+export default runner;

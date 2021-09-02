@@ -1,9 +1,9 @@
 import Editor from "./components/Editor";
 import LogsContainer from "./components/LogsConteiner";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 import Box from "./components/Box";
-import runner, { createContainer } from "./runner";
+import runner from "./runner";
 import Tabs from "./components/Tabbing/Tabs";
 import Tab from "./components/Tabbing/Tab";
 
