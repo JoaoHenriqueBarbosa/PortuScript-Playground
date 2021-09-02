@@ -34,7 +34,7 @@ const runner = (consoleInstance) => (code) => {
         code.type === "command" &&
         ast.body.length === 1 &&
         ast.body[0].expression?.type === "Identifier" &&
-        ast.body[0].expression?.name in window
+        ast.body[0].expression?.name in container.contentWindow
       ) {
         consoleInstance.current?.pushLog({
           method: "result",
