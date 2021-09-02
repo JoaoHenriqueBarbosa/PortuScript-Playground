@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
 import Monaco from "@monaco-editor/react";
+import Box from "../Box";
 
 // Create your own language definition here
 // You can safely look at other samples without losing modifications.
@@ -303,6 +304,7 @@ const Editor = (props) => {
 
   return (
     <Monaco
+      loading={<Box color="white">Carregando...</Box>}
       beforeMount={handleEditorWillMount}
       onMount={handleEditorDidMount}
       theme="portuscript-theme"

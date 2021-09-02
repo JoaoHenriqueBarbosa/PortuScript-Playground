@@ -1,11 +1,11 @@
 import Editor from "./components/Editor";
 import LogsContainer from "./components/LogsConteiner";
 import { useEffect, useRef, useState } from "react";
-import { generate } from "astring";
-import functions from "./builtin/functions";
-import Box from "./components/Box";
 
-const portuscriptparser = window.portuscriptparser;
+import Box from "./components/Box";
+import runner, { createContainer } from "./runner";
+import Tabs from "./components/Tabbing/Tabs";
+import Tab from "./components/Tabbing/Tab";
 
 function App() {
   const [code, setCode] = useState(
@@ -24,62 +24,26 @@ escreva(resultado.join(', '));
 `
   );
   const consoleRef = useRef();
-
-  const run = (command) => {
-    if (command) {
-      consoleRef.current.pushLog({
-        method: "command",
-        data: [command]
-      });
-    }
-    let ast = {};
-    try {
-      ast = portuscriptparser.parse(command || code);
-      const jsCode = generate(ast);
-      var jsProgram = new Function(functions + jsCode);
-      try {
-        if (
-          command &&
-          ast.body.length === 1 &&
-          ast.body[0].expression?.type === "Identifier" &&
-          ast.body[0].expression?.name in window
-        ) {
-          consoleRef.current.pushLog({
-            method: "result",
-            data: [window[ast.body[0].expression.name]]
-          });
-        } else {
-          jsProgram();
-          if (
-            command &&
-            ast.body.length === 1 &&
-            ast.body[0].expression?.type === "AssignmentExpression"
-          ) {
-            consoleRef.current.pushLog({
-              method: "result",
-              data: [window[ast.body[0].expression.left.name]]
-            });
-          }
-        }
-      } catch (error) {
-        console.error("psLog", error?.message || error);
-      }
-    } catch (error) {
-      console.error("psLog", error?.message || error);
-    }
-  };
+  const run = runner(consoleRef);
 
   return (
     <Box display="flex" height="100vh" overflow="hidden">
-      <Box width="50%" height="100%">
+      <Box flex="1" height="100%">
+        <Tabs>
+          <Tab active>index.ps</Tab>
+          {/* <Tab>Ajuda</Tab> */}
+        </Tabs>
         <Editor
           height="100%"
           value={code}
           onChange={(_code) => setCode(_code)}
         />
       </Box>
-      <Box width="50%" height="100%">
-        <LogsContainer ref={consoleRef} runCode={run} runCommand={cmd => run(cmd)}/>
+      <Box flex="1" height="100%">
+        <Tabs>
+          <Tab active>Terminal</Tab>
+        </Tabs>
+        <LogsContainer ref={consoleRef} runner={run} code={code} />
       </Box>
     </Box>
   );

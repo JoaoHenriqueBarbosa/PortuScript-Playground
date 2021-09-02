@@ -6,13 +6,12 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* 
+
 html,
 body,
 #root {
-  height: calc(100% + 1px);
-  overflow-y: hidden;
-} */
+  background-color: rgb(36, 36, 36);
+}
 .logsContainer div div div:first-child {
   min-width: 18px;
 }
@@ -39,9 +38,7 @@ body,
   white-space: pre-wrap;
   font-size: 12px;
   width: 100%;
-
   border-top: 1px solid rgba(255,255,255,0.03);
-  border-bottom: 1px solid rgba(255,255,255,0.03);
   margin-top: -1px;
 }
 
