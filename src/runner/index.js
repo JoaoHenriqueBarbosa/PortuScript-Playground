@@ -38,7 +38,7 @@ const runner = (consoleInstance) => (code) => {
       ) {
         consoleInstance.current?.pushLog({
           method: "result",
-          data: [window[ast.body[0].expression.name]],
+          data: [container.contentWindow[ast.body[0].expression.name]],
         });
       } else {
         container.contentWindow.eval(functions + jsCode);
@@ -49,7 +49,7 @@ const runner = (consoleInstance) => (code) => {
         ) {
           consoleInstance.current?.pushLog({
             method: "result",
-            data: [window[ast.body[0].expression.left.name]],
+            data: [container.contentWindow[ast.body[0].expression.left.name]],
           });
         }
       }
