@@ -13,7 +13,6 @@ body,
   height: calc(100% + 1px);
   overflow-y: hidden;
 } */
-
 .logsContainer div div div:first-child {
   min-width: 18px;
 }
@@ -30,7 +29,6 @@ body,
   display: flex;
   color: rgba(255, 255, 255, 0.9);
   background-color: transparent;
-  border-bottom: 1px solid rgba(255,255,255,0.07);
   border-right: none;
   margin-bottom: 0;
   padding-left: 10px;
@@ -41,6 +39,10 @@ body,
   white-space: pre-wrap;
   font-size: 12px;
   width: 100%;
+
+  border-top: 1px solid rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.03);
+  margin-top: -1px;
 }
 
 .consoleInputContainer input {
@@ -54,26 +56,6 @@ body,
   white-space: pre-wrap;
   height: 20px;
   margin-left: 13px;
-}
-
-div[data-method="command"] {
-  border-bottom: none !important;
-  border-top: none !important;
-}
-
-div[data-method="log"],
-div[data-method="debug"],
-div[data-method="info"],
-div[data-method="warn"],
-div[data-method="table"],
-div[data-method="clear"],
-div[data-method="time"],
-div[data-method="timeEnd"],
-div[data-method="count"],
-div[data-method="assert"],
-div[data-method="result"] {
-  border-top: none !important;
-  border-bottom: 1px solid rgba(255,255,255,0.07) !important;
 }
 
 div[data-method="command"] .linkified {

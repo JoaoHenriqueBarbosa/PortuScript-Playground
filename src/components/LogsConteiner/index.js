@@ -13,7 +13,7 @@ import translateLog from "../../utils/translateLog";
 const LogsContainer = forwardRef(
   ({ runCode, runCommand: runCommandProp }, ref) => {
     const [logs, setLogs] = useState([]);
-    const [inputValue, setInputValue] = useState("");
+    const [inputValue, setInputValue] = useState("portuscript index.ps");
     const [commandHistory, setCommandHistory] = useState([]);
     const [commandHistoryCursor, setCommandHistoryCursor] = useState(0);
     const inputRef = useRef();
